@@ -25,7 +25,7 @@ h1 {
   text-align: center;
   display: grid;
   grid-template-columns: repeat(3, auto);
-  max-width: 306px;
+  max-width: 290px;
   margin: 40px auto;
   align-items: center;
 }
@@ -34,10 +34,19 @@ h1 {
   font-family: 'Hubballi', cursive, sans-serif;
   max-width: 100px;
   min-height: 120px;
-  box-shadow: 0 0 0 1px #333333;
-  border: 1px solid #333333;
   cursor: pointer;
-  line-height: 100px;
-  font-size: 6em;
-  padding-bottom: 10px;
+  /* line-height: 100px; */
+  font-size: 5em;
+  padding: 10px;
+}
+
+/* add borders to index's 1,4, and 7 */
+.board-square[data-index="1"], .board-square[data-index="4"], .board-square[data-index="7"] {
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+}
+
+/* get all .board-square except data-index 6,7,8 */
+.board-square:not([data-index="6"]):not([data-index="7"]):not([data-index="8"]) {
+  border-bottom: 2px solid black;
 }

@@ -5,7 +5,11 @@ const gameBoard = (() => {
   let boardArr = ["x", "x", "x", "o", "o", "o", "x", "x", "x"];
   
   const displayBoard = () => { 
-    console.log(boardContainer)
+    // boardArr.map((i, idx) => {
+    //   const boardSqare = `<div class="board-square" data-index="${idx}">${i}</div>`;
+    //   boardContainer.innerHTML += boardSqare;
+    // });
+
     for (let i = 0; i < boardArr.length; i++) {
       // const boardSquare = document.createElement("div");
       // boardSquare.classList.add("board-square");
@@ -23,5 +27,29 @@ const gameBoard = (() => {
   }
 })();
 
+const player = (sign) => {
+  // alert for choice
+  const choice = sign
+}
 
+const playGame = (() => {
+
+  const pickSquare = () => {
+    const boardContainer = document.querySelector(".game-board-container");
+    boardContainer.addEventListener("click", (e) => {
+      const boardSquare = e.target;
+      if (boardSquare.classList.contains("board-square")) {
+        boardSquare.innerHTML =  'z';
+      } else {
+        return;
+      };
+    });
+  };
+
+  return {
+    pickSquare
+  }
+})();
 gameBoard.displayBoard();
+
+playGame.pickSquare();
