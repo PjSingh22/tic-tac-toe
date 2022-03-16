@@ -20,6 +20,7 @@ const playGame = (() => {
   const boardContainer = document.querySelector(".game-board-container");
   const boardCells = boardContainer.childNodes;
   const resetButton = document.querySelector(".reset-button");
+  const playerTurn = document.querySelector(".player-turn");
   const winningMessageContainer = document.querySelector(".winning-message-container");
   const winningMessage = document.querySelector('.message');
 
@@ -51,8 +52,10 @@ const playGame = (() => {
     });
   };
   const placeMark = (boardSquare) => {
-    boardSquare.innerHTML = circlesTurn ? "o" : "x";
-    currentChoice = circlesTurn ? "o" : "x";
+    let symbolCheck = circlesTurn ? "o" : "x"
+    boardSquare.innerHTML = symbolCheck;
+    currentChoice = symbolCheck;
+    playerTurn.innerHTML = `${symbolCheck}'s Turn`;
     circlesTurn = !circlesTurn;
   }
   const checkWin = () => {
