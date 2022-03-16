@@ -4,27 +4,17 @@ const gameBoard = (() => {
   const boardContainer = document.querySelector(".game-board-container");
   let boardArr = ["", "", "", "", "", "", "", "", ""];
 
-  const displayBoard = () => { 
+  const displayBoard = () => {
     boardArr.map((i, idx) => {
       const boardSqare = `<div class="board-square" data-cell data-index="${idx}">${i}</div>`;
       boardContainer.innerHTML += boardSqare;
     });
-
-    // const updateArray = (index, currentChoice) => {
-    //   boardArr[index] = currentChoice;
-    // }
   };
 
   return {
     displayBoard,
-    // updateArray,
   }
 })();
-
-const player = (sign) => {
-  // alert for choice
-  const choice = sign
-}
 
 const playGame = (() => {
   const boardContainer = document.querySelector(".game-board-container");
@@ -32,12 +22,23 @@ const playGame = (() => {
   const resetButton = document.querySelector(".reset-button");
   const winningMessageContainer = document.querySelector(".winning-message-container");
   const winningMessage = document.querySelector('.message');
-  // const winningCombos = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+
   let circlesTurn;
   let currentChoice;
-  const winningCombos = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]];
+  // winning combos based on nodeList and not array index
+  const winningCombos = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+    [1, 4, 7],
+    [2, 5, 8],
+    [3, 6, 9],
+    [1, 5, 9],
+    [3, 5, 7]
+  ];
 
   const pickSquare = () => {
+    gameBoard.displayBoard();
     boardContainer.addEventListener("click", (e) => {
       const boardSquare = e.target;
       if (!boardSquare.classList.contains("board-square")) return;
@@ -63,10 +64,10 @@ const playGame = (() => {
   };
 
   const gameover = () => {
-    if(checkWin()) {
+    if (checkWin()) {
       winningMessage.innerHTML = `${currentChoice} wins!`;
       winningMessageContainer.classList.remove("hide");
-    } else if(checkDraw()) {
+    } else if (checkDraw()) {
       winningMessage.innerHTML = "It's a draw!";
       winningMessageContainer.classList.remove("hide");
     }
@@ -84,6 +85,7 @@ const playGame = (() => {
     }
     return true
   };
+
   const startGame = () => {
     pickSquare();
   };
@@ -92,5 +94,5 @@ const playGame = (() => {
     startGame
   }
 })();
-gameBoard.displayBoard();
+
 playGame.startGame();
